@@ -1,0 +1,12 @@
+<%- include('head'); -%>
+<main>
+  <div class="jumbotron">
+      <p class="lead"><i class="fa fa-user" aria-hidden="true"></i>
+        Facebook User Info</p>
+      <hr class="my-4">
+      <p>Id: <%= user.id  %></p>
+      <p>Name: <%= user.name %></p>
+      <a class="btn btn-primary" href="/moreinfo/facebook" role="button"><span class="fa fa-user"></span>More Info</a>
+  </div>
+</main>
+<%- include('foot'); -%>

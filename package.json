@@ -1,0 +1,28 @@
+{
+    "name": "google-auth-passport",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "dependencies": {
+        "connect-mongo": "^4.4.1",
+        "dotenv": "^10.0.0",
+        "ejs": "^3.1.2",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "jshint": "^2.13.0",
+        "mongodb": "^3.6.5",
+        "mongoose": "^5.7.12",
+        "passport": "^0.4.1",
+        "passport-facebook": "^3.0.0",
+        "passport-github": "^1.1.0",
+        "passport-google-oauth": "^2.0.0",
+        "passport-local": "^1.0.0",
+        "request": "^2.88.2"
+    },
+    "scripts": {
+        "start": "nodemon app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Aulas SGI",
+    "license": "ISC"
+}

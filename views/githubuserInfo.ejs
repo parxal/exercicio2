@@ -1,0 +1,43 @@
+<%- include('head'); -%>
+<main>
+  <div class="jumbotron">
+      <p class="lead"><i class="fa fa-user" aria-hidden="true"></i>
+        GitHub User Info</p>
+      <hr class="my-4">
+      <p>Login: <%= user.login  %></p>
+      <p>Id: <%= user.id  %></p>
+      <p>Node Id: <%= user.node_id  %></p>
+      <img src="<%= user.avatar_url %>" alt="Avatar">
+      <p>Gravatar Id: <%= user.gravatar_id  %></p>
+      <p>Url: <%= user.url  %></p>
+      <p>Html Url: <%= user.html_url  %></p>
+      <p>Followers Url: <%= user.followers_url  %></p>
+      <p>Following Url: <%= user.following_url  %></p>
+      <p>Gists Url: <%= user.gists_url  %></p>
+      <p>Starred Url: <%= user.starred_url  %></p>
+      <p>Subscriptions Url: <%= user.subscriptions_url  %></p>
+      <p>Organizations Url: <%= user.organizations_url  %></p>
+      <p>Repos Url: <%= user.repos_url  %></p>
+      <p>Events Url: <%= user.events_url  %></p>
+      <p>Received Events Url: <%= user.received_events_url  %></p>
+      <p>Type: <%= user.type  %></p>
+      <p>Site Admin: <%= user.site_admin  %></p>
+      <p>Name: <%= user.name  %></p>
+      <p>Company: <%= user.company  %></p>
+      <p>Blog: <%= user.blog  %></p>
+      <p>Location: <%= user.location  %></p>
+      <p>Email: <%= user.email  %></p>
+      <p>Hireable: <%= user.hireable  %></p>
+      <p>Bio: <%= user.bio  %></p>
+      <p>Twitter Username: <%= user.twitter_username  %></p>
+      <p>Public Repos: <%= user.public_repos  %></p>
+      <p>Public Gists: <%= user.public_gists  %></p>
+      <p>Followers: <%= user.followers  %></p>
+      <p>Following: <%= user.following  %></p>
+      <p>Created at: <%= user.created_at  %></p>
+      <p>Updated at: <%= user.updated_at  %></p>
+      <a class="btn btn-primary" href="/moreinfo/github" role="button"><span class="fa fa-user"></span>More Info</a>
+  </div>
+</main>
+<%- include('foot'); -%>
+

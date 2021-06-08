@@ -1,0 +1,12 @@
+<%- include('head'); -%>
+<main>
+    <div class="jumbotron">
+        <p class="lead">An error occurred!</p>
+        <hr class="my-4">
+        <p><%= message_tag %></p>
+        <a class="btn btn-primary" href="/login/google" role="button"><span class="fa fa-google"></span> Login Google</a>
+        <a class="btn btn-primary" href="/login/facebook" role="button"><span class="fa fa-facebook"></span> Login Facebook</a>
+        <a class="btn btn-primary" href="/login/gitHub" role="button"><span class="fa fa-github"></span> Login GitHub</a>
+    </div>
+</main>
+<%- include('foot'); -%>
