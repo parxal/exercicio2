@@ -9,7 +9,9 @@
         <a class="btn btn-primary" href="/login/google" role="button"><span class="fa fa-google"></span> Login Google</a>
         <a class="btn btn-primary" href="/login/facebook" role="button"><span class="fa fa-facebook"></span> Login Facebook</a>
         <a class="btn btn-primary" href="/login/gitHub" role="button"><span class="fa fa-github"></span> Login GitHub</a>
-        <% }  %>
+        <% } else {  %>
+            <p><%= expiresmsg %></p>
+        <% } %>   
     </div>
 </main>
 <%- include('foot'); -%>

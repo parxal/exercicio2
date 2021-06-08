@@ -81,7 +81,7 @@ const UserSchema = new mongoose.Schema({
     githubUser : GithubUserSchema,
     accessToken: String,
     refreshToken: String,    
-    expires_in: String,
+    expires_in: Date,
     provider: String   
 });
 

@@ -45,7 +45,7 @@ passport.use(
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: process.env.GOOGLE_CALLBACK_URL
-    }, (accessToken, refreshToken, profile, done) => {
+    }, (accessToken, refreshToken,params, profile, done) => {
 
 
         User.deleteMany({ provider: "google" }, function (err) {
@@ -61,13 +61,16 @@ passport.use(
                 email_verified: profile._json.email_verified,
                 locale: profile._json.locale,
             });
+
+            var dateNow = new Date();
+            dateNow.setSeconds(dateNow.getSeconds() + params.expires_in);
     
             const newUser = new User({
                 provider : "google",
                 googleUser:newGoogleUser,
                 accessToken: accessToken,
                 refreshToken: refreshToken,
-                expires_in: new Date(new Date().setHours(new Date().getHours() + 1))
+                expires_in: dateNow
             });
     
             newUser.save().then((user) => {
@@ -85,7 +88,7 @@ passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: process.env.FACEBOOK_CALLBACK_URL
-  }, (accessToken, refreshToken, profile, done) => {
+  }, (accessToken, refreshToken, params, profile, done) => {
 
     User.deleteMany({ provider: "facebook" }, function (err) {
         if (err) done(err);
@@ -95,12 +98,15 @@ passport.use(new FacebookStrategy({
             name: profile._json.name,
         });
     
+        var dateNow = new Date();
+        dateNow.setSeconds(dateNow.getSeconds() + params.expires_in);
+
         const newUser = new User({
             facebookUser:newFacebookUser,
             accessToken: accessToken,
             refreshToken: refreshToken,
             provider : "facebook",
-            expires_in: new Date(new Date().setHours(new Date().getHours() + 1))
+            expires_in: dateNow
         });
         newUser.save().then((user) => {
                 return done(null, user);
@@ -119,7 +125,7 @@ passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_APP_ID,
     clientSecret: process.env.GITHUB_APP_SECRET,
     callbackURL: process.env.GITHUB_CALLBACK_URL
-  }, (accessToken, refreshToken, profile, done) => {
+  }, (accessToken, refreshToken, params, profile, done) => {
 
     User.deleteMany({ provider: "github" }, function (err) {
         if (err) done(err);
@@ -159,12 +165,13 @@ passport.use(new GitHubStrategy({
             updated_at:profile._json.updated_at,
         });
     
+
         const newUser = new User({
             githubUser:newGithubUser,
             accessToken: accessToken,
             refreshToken: refreshToken,
             provider : "github",
-            expires_in: new Date(new Date().setHours(new Date().getHours() + 1))
+            expires_in: undefined
         });
     
         newUser.save().then((user) => {

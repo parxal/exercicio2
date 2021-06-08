@@ -10,8 +10,18 @@ module.exports = app => {
             dateStyle: 'full',
             timeStyle: 'long'
         }).format(new Date());
+
+        let expiresmsg = "Token never expires!";
+        if (req.isAuthenticated() && req.user.expires_in !== undefined) {
+            expiresmsg = "Session expires at : " + new Intl.DateTimeFormat('en-GB', {
+                dateStyle: 'full',
+                timeStyle: 'long'
+            }).format(req.user.expires_in);
+        }
+
         res.render('index', {
             isAuth: req.isAuthenticated(),
+            expiresmsg: expiresmsg,
             date_tag: date,
             message_tag: !req.isAuthenticated() ? 'Access your account' : 'Authenticated with ' + req.user.provider,
         });
@@ -58,7 +68,7 @@ module.exports = app => {
             return;
         }
 
-        request('https://graph.facebook.com/v10.0/680800373?fields=about,picture,last_name,first_name&access_token='+req.user.accessToken, function (error, response, body) {
+        request('https://graph.facebook.com/v10.0/680800373?fields=about,picture,last_name,first_name&access_token=' + req.user.accessToken, function (error, response, body) {
 
             if (response != undefined && response.statusCode == 200) {
                 let data = JSON.parse(body);
@@ -127,7 +137,7 @@ module.exports = app => {
                 url: "https://gmail.googleapis.com/gmail/v1/users/112672389575878690864/profile",
                 headers: {
                     'user-agent': 'node.js',
-                    "Authorization": "Bearer "+ req.user.accessToken
+                    "Authorization": "Bearer " + req.user.accessToken
                 }
             },
             function (error, response, body) {
@@ -137,7 +147,7 @@ module.exports = app => {
                 if (response != undefined && response.statusCode == 200) {
                     res.render('googlemoreinfo', {
                         email: data.emailAddress,
-                        messagesTotal : data.messagesTotal
+                        messagesTotal: data.messagesTotal
                     });
                 }
                 else {
@@ -153,7 +163,7 @@ module.exports = app => {
 
     app.get('/login/google',
         passport.authenticate('google', {
-            scope: ['profile', 'email','https://mail.google.com/'],
+            scope: ['profile', 'email', 'https://mail.google.com/'],
             accessType: 'offline' // Requests a refresh token
         })
     );
